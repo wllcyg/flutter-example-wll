@@ -1,0 +1,224 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Minimal Diary",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+
+  "greeting": "Hello!",
+  "@greeting": {
+    "description": "A simple greeting message"
+  },
+
+  "welcomeUser": "Welcome, {name}!",
+  "@welcomeUser": {
+    "description": "A welcome message with user name parameter",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alice"
+      }
+    }
+  },
+
+  "itemCount": "{count} items",
+  "@itemCount": {
+    "description": "Display item count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+
+  "unreadMessages": "{count, plural, =0{No unread messages} =1{1 unread message} other{{count} unread messages}}",
+  "@unreadMessages": {
+    "description": "Unread message count with plural support (ICU plural syntax)",
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+
+  "userGreeting": "{gender, select, male{Mr. {name}} female{Ms. {name}} other{Dear {name}}}",
+  "@userGreeting": {
+    "description": "Gender-aware greeting (ICU select syntax)",
+    "placeholders": {
+      "gender": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "currentDate": "Today is {date}",
+  "@currentDate": {
+    "description": "Display current date with formatted date parameter",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMMd"
+      }
+    }
+  },
+
+  "price": "Price: {amount}",
+  "@price": {
+    "description": "Display a formatted price",
+    "placeholders": {
+      "amount": {
+        "type": "double",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "$",
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings label"
+  },
+
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+
+  "followSystem": "Follow System",
+  "@followSystem": {
+    "description": "Follow system locale option"
+  },
+
+  "chinese": "Chinese",
+  "@chinese": {
+    "description": "Chinese language option"
+  },
+
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+
+  "switchLanguage": "Switch Language",
+  "@switchLanguage": {
+    "description": "Switch language section title"
+  },
+
+  "basicTranslation": "Basic Translation",
+  "@basicTranslation": {
+    "description": "Tab title for basic translation demos"
+  },
+
+  "pluralGenderDate": "Plural / Gender / Date",
+  "@pluralGenderDate": {
+    "description": "Tab title for plural, gender, date formatting demos"
+  },
+
+  "solutionComparison": "Solutions",
+  "@solutionComparison": {
+    "description": "Tab title for i18n solution comparison"
+  },
+
+  "currentLocale": "Current Locale",
+  "@currentLocale": {
+    "description": "Label for showing current locale information"
+  },
+
+  "knowledgePointTitle": "Knowledge Point",
+  "@knowledgePointTitle": {
+    "description": "Knowledge point section title"
+  },
+
+  "tryItOut": "Try it out",
+  "@tryItOut": {
+    "description": "Interactive section title"
+  },
+
+  "codeReference": "Code Reference",
+  "@codeReference": {
+    "description": "Code reference section label"
+  },
+
+  "pluralDemo": "Plural Messages",
+  "@pluralDemo": {
+    "description": "Plural demo section title"
+  },
+
+  "genderDemo": "Gender-Aware Messages",
+  "@genderDemo": {
+    "description": "Gender demo section title"
+  },
+
+  "dateFormatDemo": "Date Formatting",
+  "@dateFormatDemo": {
+    "description": "Date formatting demo section title"
+  },
+
+  "numberFormatDemo": "Number Formatting",
+  "@numberFormatDemo": {
+    "description": "Number format demo section title"
+  },
+
+  "male": "Male",
+  "@male": {
+    "description": "Male gender option"
+  },
+
+  "female": "Female",
+  "@female": {
+    "description": "Female gender option"
+  },
+
+  "other": "Other",
+  "@other": {
+    "description": "Other gender option"
+  },
+
+  "officialSolution": "Official Solution",
+  "@officialSolution": {
+    "description": "Official i18n solution label"
+  },
+
+  "officialSolutionDesc": "flutter_localizations + intl + ARB files, recommended by Flutter team. Type-safe, good tooling support, but requires code generation step.",
+  "@officialSolutionDesc": {
+    "description": "Description of official solution"
+  },
+
+  "easyLocalization": "easy_localization",
+  "@easyLocalization": {
+    "description": "easy_localization package name"
+  },
+
+  "easyLocalizationDesc": "Supports JSON/YAML/CSV formats, hot reload friendly, simpler setup. No code generation required, but less type-safe.",
+  "@easyLocalizationDesc": {
+    "description": "Description of easy_localization"
+  },
+
+  "slang": "slang",
+  "@slang": {
+    "description": "slang package name"
+  },
+
+  "slangDesc": "Type-safe with code generation from JSON/YAML. Supports linked translations, interfaces, and modifiers. Rising star in the community.",
+  "@slangDesc": {
+    "description": "Description of slang"
+  },
+
+  "feature": "Feature",
+  "@feature": {
+    "description": "Feature column header"
+  },
+
+  "recommended": "Recommended ✅",
+  "@recommended": {
+    "description": "Recommended label"
+  }
+}

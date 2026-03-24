@@ -1,0 +1,155 @@
+name: my_flutter_app
+description: "A modern Flutter project implementing MVVM architecture."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP 客户端
+  http: ^1.1.0
+
+  # 环境变量
+  flutter_dotenv: ^5.1.0
+
+  # Icons
+  cupertino_icons: ^1.0.8
+
+  # Supabase
+  supabase_flutter: ^2.8.3
+
+  # State Management (Riverpod)
+  flutter_riverpod: ^2.6.1
+  flutter_hooks: ^0.20.5
+  hooks_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Internationalization
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+
+  # Routing
+  go_router: ^14.6.0
+
+  # Screen Adaptation
+  flutter_screenutil: ^5.9.3
+
+  # Networking
+  # ✅ 保留 dio，移除 retrofit + retrofit_generator
+  # retrofit 与 riverpod_generator 的 build 依赖版本不兼容，当前 Dart 生态无法同时使用两者的代码生成
+  # 改用 dio 直接封装 API，功能完全等价
+  dio: ^5.7.0
+
+  # Local Storage
+  shared_preferences: ^2.5.4
+  flutter_secure_storage: ^10.0.0
+
+  # UI / UX
+  fluttertoast: ^9.0.0
+  flutter_easyloading: ^3.0.5
+  flutter_smart_dialog: ^4.9.8+9
+
+  # Rich Text Editor
+  flutter_quill: ^11.5.0
+  flutter_quill_extensions: ^11.0.0
+
+  # Image
+  image_picker: ^1.2.1
+  image_cropper: ^9.0.0
+  flutter_image_compress: ^2.4.0
+  cached_network_image: ^3.4.1
+
+  # Permissions & Path
+  permission_handler: ^11.3.1
+  path_provider: ^2.1.5
+
+  # Utilities
+  collection: ^1.19.1
+  url_launcher: ^6.3.2
+
+  # Calendar
+  table_calendar: ^3.2.0
+
+  # Notifications
+  flutter_local_notifications: ^20.0.0
+  timezone: ^0.10.1
+  flutter_timezone: ^5.0.1
+
+  # Map
+  flutter_map: ^8.2.2
+  latlong2: ^0.9.1
+
+  # Auth
+  local_auth: ^2.3.0
+
+  # WebView
+  webview_flutter: ^4.8.0
+
+  # Code Generation Annotations
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+
+  # Charts
+  fl_chart: ^0.69.0
+  lottie: ^3.3.2
+  shimmer: ^3.0.0
+  flutter_svg: ^2.2.4
+  connectivity_plus: ^7.0.0
+  device_info_plus: ^12.3.0
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^7.2.0
+  flutter_downloader: ^1.12.0
+  share_plus: ^12.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+  # Code Generation Tools
+  build_runner: ^2.4.13
+  freezed: ^3.0.6
+  json_serializable: ^6.9.4
+  riverpod_generator: ^2.6.1 # ✅ 与 riverpod_annotation 2.x 配套，稳定可用
+  # retrofit_generator 已移除：
+  # retrofit_generator 10.x 需要 build ^4.0.0
+  # riverpod_generator 2.x 需要 build ^2.0.0
+  # 两者当前在 Dart 生态中无法共存（见 github.com/rrousselGit/riverpod/issues/4676）
+
+  # Resource Generation
+  flutter_launcher_icons: ^0.14.4
+  flutter_gen_runner: ^5.13.0+1
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/splash/
+    - assets/svgs/
+    - .env
+
+# Flutter Launcher Icons Configuration
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon/app_icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  background_color_ios: "#ffffff"
+  adaptive_icon_foreground: "assets/images/icon/app_icon.png"
+  adaptive_icon_background: "#ffffff"
+
+# FlutterGen Configuration
+flutter_gen:
+  output: lib/gen/
+  line_length: 80
+  integrations:
+    flutter_svg: true
