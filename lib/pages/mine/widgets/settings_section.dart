@@ -205,6 +205,13 @@ class SettingsSection extends ConsumerWidget {
               icon: Icons.qr_code_scanner,
               title: '常用工具包 (二)',
               onTap: () => context.push('/mine/day38_tools_demo'),
+              showBorder: true,
+              isDark: isDark),
+          _buildListItem(
+              context: context,
+              icon: Icons.swipe,
+              title: '列表侧滑操作',
+              onTap: () => context.push('/mine/day39_slidable_demo'),
               showBorder: false,
               isDark: isDark),
         ], isDark),

@@ -40,6 +40,7 @@ import '../pages/deep_link_demo/deep_link_map_demo_page.dart';
 import '../pages/lottie_shimmer_demo/lottie_shimmer_demo_page.dart';
 import '../pages/day37_tools_demo.dart';
 import '../pages/day38_tools_demo.dart';
+import '../pages/day39_slidable_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -334,6 +335,13 @@ GoRouter goRouter(Ref ref) {
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
                         context, state, const Day38ToolsDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day39_slidable_demo',
+                    name: 'mine_day39_slidable_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day39SlidableDemo()),
                   ),
                 ],
               ),
