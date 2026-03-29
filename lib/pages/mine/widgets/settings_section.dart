@@ -212,6 +212,13 @@ class SettingsSection extends ConsumerWidget {
               icon: Icons.swipe,
               title: '列表侧滑操作',
               onTap: () => context.push('/mine/day39_slidable_demo'),
+              showBorder: true,
+              isDark: isDark),
+          _buildListItem(
+              context: context,
+              icon: Icons.grid_view,
+              title: '瀑布流布局',
+              onTap: () => context.push('/mine/day40_staggered_grid_demo'),
               showBorder: false,
               isDark: isDark),
         ], isDark),

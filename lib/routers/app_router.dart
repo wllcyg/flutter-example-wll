@@ -41,6 +41,7 @@ import '../pages/lottie_shimmer_demo/lottie_shimmer_demo_page.dart';
 import '../pages/day37_tools_demo.dart';
 import '../pages/day38_tools_demo.dart';
 import '../pages/day39_slidable_demo.dart';
+import '../pages/day40_staggered_grid_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -341,7 +342,14 @@ GoRouter goRouter(Ref ref) {
                     name: 'mine_day39_slidable_demo',
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
-                        context, state, const Day39SlidableDemo()),
+                        context, state, const Day39SlidableDemoHooks()),
+                  ),
+                  GoRoute(
+                    path: 'day40_staggered_grid_demo',
+                    name: 'mine_day40_staggered_grid_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day40StaggeredGridDemo()),
                   ),
                 ],
               ),

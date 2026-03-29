@@ -1,92 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class Day39SlidableDemo extends StatefulWidget {
-  const Day39SlidableDemo({super.key});
+class Day39SlidableDemoHooks extends HookWidget {
+  const Day39SlidableDemoHooks({super.key});
 
   @override
-  State<Day39SlidableDemo> createState() => _Day39SlidableDemoState();
-}
+  Widget build(BuildContext context) {
+    // 使用 useState 替代 StatefulWidget 的 state
+    final todos = useState<List<TodoItem>>([
+      TodoItem(id: 1, title: '完成 Flutter 项目', isPinned: false),
+      TodoItem(id: 2, title: '学习 flutter_slidable', isPinned: true),
+      TodoItem(id: 3, title: '编写技术文档', isPinned: false),
+      TodoItem(id: 4, title: '代码 Review', isPinned: false),
+      TodoItem(id: 5, title: '团队会议', isPinned: false),
+    ]);
 
-class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
-  // 待办事项列表
-  List<TodoItem> _todos = [
-    TodoItem(id: 1, title: '完成 Flutter 项目', isPinned: false),
-    TodoItem(id: 2, title: '学习 flutter_slidable', isPinned: true),
-    TodoItem(id: 3, title: '编写技术文档', isPinned: false),
-    TodoItem(id: 4, title: '代码 Review', isPinned: false),
-    TodoItem(id: 5, title: '团队会议', isPinned: false),
-  ];
+    // 使用 useCallback 缓存回调函数
+    final deleteTodo = useCallback((int id) {
+      todos.value = todos.value.where((item) => item.id != id).toList();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('已删除'), duration: Duration(seconds: 1)),
+      );
+    }, [todos.value]);
 
-  void _deleteTodo(int id) {
-    setState(() {
-      _todos.removeWhere((item) => item.id == id);
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('已删除'), duration: Duration(seconds: 1)),
-    );
-  }
+    final editTodo = useCallback((TodoItem item) {
+      showDialog(
+        context: context,
+        builder: (dialogContext) {
+          return _EditDialog(
+            item: item,
+            onSave: (newTitle) {
+              final index = todos.value.indexWhere((t) => t.id == item.id);
+              if (index != -1) {
+                final updated = List<TodoItem>.from(todos.value);
+                updated[index] = TodoItem(
+                  id: item.id,
+                  title: newTitle,
+                  isPinned: item.isPinned,
+                );
+                todos.value = updated;
+              }
+            },
+          );
+        },
+      );
+    }, [todos.value]);
 
-  void _editTodo(TodoItem item) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        final controller = TextEditingController(text: item.title);
-        return AlertDialog(
-          title: const Text('编辑待办'),
-          content: TextField(
-            controller: controller,
-            decoration: const InputDecoration(hintText: '输入新标题'),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('取消'),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  item.title = controller.text;
-                });
-                Navigator.pop(context);
-              },
-              child: const Text('保存'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _togglePin(TodoItem item) {
-    setState(() {
-      item.isPinned = !item.isPinned;
+    final togglePin = useCallback((TodoItem item) {
+      final updated = todos.value.map((t) {
+        if (t.id == item.id) {
+          return TodoItem(id: t.id, title: t.title, isPinned: !t.isPinned);
+        }
+        return t;
+      }).toList();
+      
       // 重新排序：置顶的在前
-      _todos.sort((a, b) {
+      updated.sort((a, b) {
         if (a.isPinned && !b.isPinned) return -1;
         if (!a.isPinned && b.isPinned) return 1;
         return 0;
       });
-    });
-  }
+      
+      todos.value = updated;
+    }, [todos.value]);
 
-  void _shareTodo(TodoItem item) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('分享: ${item.title}'), duration: const Duration(seconds: 1)),
-    );
-  }
+    final shareTodo = useCallback((TodoItem item) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('分享: ${item.title}'),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+    }, []);
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Day 39: 列表侧滑操作'),
+        title: const Text('Day 39: 列表侧滑操作 (Hooks)'),
       ),
       body: Column(
         children: [
           _buildHeader(),
           Expanded(
-            child: _buildTodoList(),
+            child: _buildTodoList(
+              todos.value,
+              deleteTodo,
+              editTodo,
+              togglePin,
+              shareTodo,
+            ),
           ),
         ],
       ),
@@ -101,7 +103,7 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'flutter_slidable 核心功能',
+            'flutter_slidable 核心功能 (Hooks 版本)',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
@@ -118,15 +120,27 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
     );
   }
 
-  Widget _buildTodoList() {
+  Widget _buildTodoList(
+    List<TodoItem> todos,
+    Function(int) deleteTodo,
+    Function(TodoItem) editTodo,
+    Function(TodoItem) togglePin,
+    Function(TodoItem) shareTodo,
+  ) {
     return ListView.builder(
-      itemCount: _todos.length + 3, // 额外添加 3 个示例展示不同动画
+      itemCount: todos.length + 3,
       itemBuilder: (context, index) {
-        if (index < _todos.length) {
-          return _buildSlidableItem(_todos[index], ActionPaneType.slide);
+        if (index < todos.length) {
+          return _buildSlidableItem(
+            todos[index],
+            ActionPaneType.slide,
+            deleteTodo,
+            editTodo,
+            togglePin,
+            shareTodo,
+          );
         } else {
-          // 展示不同动画效果的示例
-          final demoIndex = index - _todos.length;
+          final demoIndex = index - todos.length;
           final demoItem = TodoItem(
             id: 100 + demoIndex,
             title: _getDemoTitle(demoIndex),
@@ -135,6 +149,10 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
           return _buildSlidableItem(
             demoItem,
             _getDemoType(demoIndex),
+            deleteTodo,
+            editTodo,
+            togglePin,
+            shareTodo,
             isDemo: true,
           );
         }
@@ -168,23 +186,29 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
     }
   }
 
-  Widget _buildSlidableItem(TodoItem item, ActionPaneType type, {bool isDemo = false}) {
+  Widget _buildSlidableItem(
+    TodoItem item,
+    ActionPaneType type,
+    Function(int) deleteTodo,
+    Function(TodoItem) editTodo,
+    Function(TodoItem) togglePin,
+    Function(TodoItem) shareTodo, {
+    bool isDemo = false,
+  }) {
     return Slidable(
       key: ValueKey(item.id),
-      
-      // 左侧滑动操作（从右向左滑）
       endActionPane: ActionPane(
         motion: _getMotion(type),
         children: [
           SlidableAction(
-            onPressed: (context) => _editTodo(item),
+            onPressed: (context) => editTodo(item),
             backgroundColor: Colors.blue,
             foregroundColor: Colors.white,
             icon: Icons.edit,
             label: '编辑',
           ),
           SlidableAction(
-            onPressed: (context) => _deleteTodo(item.id),
+            onPressed: (context) => deleteTodo(item.id),
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
@@ -192,20 +216,18 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
           ),
         ],
       ),
-      
-      // 右侧滑动操作（从左向右滑）
       startActionPane: ActionPane(
         motion: _getMotion(type),
         children: [
           SlidableAction(
-            onPressed: (context) => _togglePin(item),
+            onPressed: (context) => togglePin(item),
             backgroundColor: item.isPinned ? Colors.grey : Colors.orange,
             foregroundColor: Colors.white,
             icon: item.isPinned ? Icons.push_pin : Icons.push_pin_outlined,
             label: item.isPinned ? '取消置顶' : '置顶',
           ),
           SlidableAction(
-            onPressed: (context) => _shareTodo(item),
+            onPressed: (context) => shareTodo(item),
             backgroundColor: Colors.green,
             foregroundColor: Colors.white,
             icon: Icons.share,
@@ -213,7 +235,6 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
           ),
         ],
       ),
-      
       child: Container(
         decoration: BoxDecoration(
           border: Border(
@@ -246,11 +267,11 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
   Widget _getMotion(ActionPaneType type) {
     switch (type) {
       case ActionPaneType.slide:
-        return const ScrollMotion(); // Slide 效果
+        return const ScrollMotion();
       case ActionPaneType.drawer:
-        return const DrawerMotion(); // Drawer 效果
+        return const DrawerMotion();
       case ActionPaneType.behind:
-        return const BehindMotion(); // Behind 效果
+        return const BehindMotion();
     }
   }
 
@@ -266,11 +287,46 @@ class _Day39SlidableDemoState extends State<Day39SlidableDemo> {
   }
 }
 
-// 待办事项模型
+// 编辑对话框组件（使用 HookWidget）
+class _EditDialog extends HookWidget {
+  final TodoItem item;
+  final Function(String) onSave;
+
+  const _EditDialog({required this.item, required this.onSave});
+
+  @override
+  Widget build(BuildContext context) {
+    // 使用 useTextEditingController 自动管理生命周期
+    final controller = useTextEditingController(text: item.title);
+
+    return AlertDialog(
+      title: const Text('编辑待办'),
+      content: TextField(
+        controller: controller,
+        decoration: const InputDecoration(hintText: '输入新标题'),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('取消'),
+        ),
+        TextButton(
+          onPressed: () {
+            onSave(controller.text);
+            Navigator.pop(context);
+          },
+          child: const Text('保存'),
+        ),
+      ],
+    );
+  }
+}
+
+// 待办事项模型（不可变）
 class TodoItem {
   final int id;
-  String title;
-  bool isPinned;
+  final String title;
+  final bool isPinned;
 
   TodoItem({
     required this.id,
