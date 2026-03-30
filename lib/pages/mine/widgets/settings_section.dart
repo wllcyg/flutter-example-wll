@@ -219,6 +219,13 @@ class SettingsSection extends ConsumerWidget {
               icon: Icons.grid_view,
               title: '瀑布流布局',
               onTap: () => context.push('/mine/day40_staggered_grid_demo'),
+              showBorder: true,
+              isDark: isDark),
+          _buildListItem(
+              context: context,
+              icon: Icons.message_outlined,
+              title: 'Toast & Badge 角标',
+              onTap: () => context.push('/mine/day41_toast_badge_demo'),
               showBorder: false,
               isDark: isDark),
         ], isDark),
