@@ -43,6 +43,8 @@ import '../pages/day38_tools_demo.dart';
 import '../pages/day39_slidable_demo.dart';
 import '../pages/day40_staggered_grid_demo.dart';
 import '../pages/day41_toast_badge_demo.dart';
+import '../pages/day42_rating_dotted_demo.dart';
+import '../pages/day43_pull_to_refresh_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -358,6 +360,20 @@ GoRouter goRouter(Ref ref) {
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
                         context, state, const Day41ToastBadgeDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day42_rating_dotted_demo',
+                    name: 'mine_day42_rating_dotted_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day42RatingDottedDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day43_pull_to_refresh_demo',
+                    name: 'mine_day43_pull_to_refresh_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day43PullToRefreshDemo()),
                   ),
                 ],
               ),

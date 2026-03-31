@@ -28,7 +28,11 @@ class LoginPage extends HookConsumerWidget {
       if (authState.user != null) {
         // 使用 Future.microtask 避免在 build 过程中跳转
         Future.microtask(() {
-          if (context.mounted) context.go('/home');
+          if (context.mounted) {
+            // 3. 跳转主页前，显式强制关闭所有加载框，防止跳转后残留在新页面上
+            SmartDialog.dismiss(status: SmartStatus.loading);
+            context.go('/home');
+          }
         });
       }
       return null;
@@ -41,7 +45,8 @@ class LoginPage extends HookConsumerWidget {
       } else {
         SmartDialog.dismiss(status: SmartStatus.loading);
       }
-      return null;
+      // 2. 添加副作用清理函数：如果组件在 isLoading 还是 true 时被卸载（如页面跳转），强制关闭加载框
+      return () => SmartDialog.dismiss(status: SmartStatus.loading);
     }, [authState.isLoading]);
 
     // 监听错误信息并弹出 Toast
