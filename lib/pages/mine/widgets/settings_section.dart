@@ -240,6 +240,13 @@ class SettingsSection extends ConsumerWidget {
               icon: Icons.refresh,
               title: '增强版下拉刷新',
               onTap: () => context.push('/mine/day43_pull_to_refresh_demo'),
+              showBorder: true,
+              isDark: isDark),
+          _buildListItem(
+              context: context,
+              icon: Icons.cloud_upload_outlined,
+              title: 'COS 图片上传',
+              onTap: () => context.push('/mine/day44_cos_upload_demo'),
               showBorder: false,
               isDark: isDark),
         ], isDark),

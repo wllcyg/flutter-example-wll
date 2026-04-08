@@ -45,6 +45,7 @@ import '../pages/day40_staggered_grid_demo.dart';
 import '../pages/day41_toast_badge_demo.dart';
 import '../pages/day42_rating_dotted_demo.dart';
 import '../pages/day43_pull_to_refresh_demo.dart';
+import '../pages/day44_cos_upload_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -374,6 +375,13 @@ GoRouter goRouter(Ref ref) {
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
                         context, state, const Day43PullToRefreshDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day44_cos_upload_demo',
+                    name: 'mine_day44_cos_upload_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day44CosUploadDemo()),
                   ),
                 ],
               ),
