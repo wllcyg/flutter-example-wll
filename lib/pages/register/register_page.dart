@@ -16,7 +16,7 @@ class RegisterPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final emailController = useTextEditingController();
-    // final codeController = useTextEditingController(); // 不再需要验证码
+    // final codeController = useTextEditingController(); // 
     final passwordController = useTextEditingController();
 
     return Scaffold(
