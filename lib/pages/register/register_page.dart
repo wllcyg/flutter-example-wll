@@ -137,7 +137,7 @@ class RegisterPage extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '已有账号？',
+                    '已有账号？te',
                     style: TextStyle(
                       fontSize: AppDimens.font14,
                       color: AppColors.textSecondary,
