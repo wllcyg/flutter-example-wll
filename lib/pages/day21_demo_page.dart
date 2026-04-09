@@ -59,7 +59,7 @@ class _Day21ImageProcessingPageState extends State<Day21ImageProcessingPage> {
         croppedFile.path,
         targetPath,
         quality: 80,
-        minWidth: 1080,
+        minWidth: 1080,// test
         minHeight: 1080,
         format: CompressFormat.jpeg,
       );
