@@ -46,6 +46,18 @@ import '../pages/day41_toast_badge_demo.dart';
 import '../pages/day42_rating_dotted_demo.dart';
 import '../pages/day43_pull_to_refresh_demo.dart';
 import '../pages/day44_cos_upload_demo.dart';
+import '../pages/day45_number_format_demo.dart';
+import '../pages/day46_timeago_demo.dart';
+import '../pages/day47_crypto_demo.dart';
+import '../pages/day48_uuid_encrypt_demo.dart';
+import '../pages/day49_file_picker_demo.dart';
+import '../pages/day50_path_provider_demo.dart';
+import '../pages/day51_video_player_demo.dart';
+import '../pages/day52_chewie_demo.dart';
+import '../pages/day53_screenshot_demo.dart';
+import '../pages/day54_share_save_demo.dart';
+import '../pages/day55_app_info_demo.dart';
+import '../pages/day56_device_connectivity_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -382,6 +394,90 @@ GoRouter goRouter(Ref ref) {
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
                         context, state, const Day44CosUploadDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day45_number_format_demo',
+                    name: 'mine_day45_number_format_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day45NumberFormatDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day46_timeago_demo',
+                    name: 'mine_day46_timeago_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day46TimeagoDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day47_crypto_demo',
+                    name: 'mine_day47_crypto_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day47CryptoDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day48_uuid_encrypt_demo',
+                    name: 'mine_day48_uuid_encrypt_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day48UuidEncryptDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day49_file_picker_demo',
+                    name: 'mine_day49_file_picker_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day49FilePickerDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day50_path_provider_demo',
+                    name: 'mine_day50_path_provider_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day50PathProviderDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day51_video_player_demo',
+                    name: 'mine_day51_video_player_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day51VideoPlayerDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day52_chewie_demo',
+                    name: 'mine_day52_chewie_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day52ChewieDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day53_screenshot_demo',
+                    name: 'mine_day53_screenshot_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day53ScreenshotDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day54_share_save_demo',
+                    name: 'mine_day54_share_save_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day54ShareSaveDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day55_app_info_demo',
+                    name: 'mine_day55_app_info_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day55AppInfoDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day56_device_connectivity_demo',
+                    name: 'mine_day56_device_connectivity_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day56DeviceConnectivityDemo()),
                   ),
                 ],
               ),
