@@ -123,6 +123,7 @@ dependencies:
   screenshot: ^3.0.0
   image_gallery_saver: ^2.0.3
   package_info_plus: ^9.0.1
+  flutter_native_splash: ^2.4.7
 
 dev_dependencies:
   flutter_test:

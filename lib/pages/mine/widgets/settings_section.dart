@@ -331,6 +331,13 @@ class SettingsSection extends ConsumerWidget {
               icon: Icons.wifi,
               title: '设备详情与网络监测',
               onTap: () => context.push('/mine/day56_device_connectivity_demo'),
+              showBorder: true,
+              isDark: isDark),
+          _buildListItem(
+              context: context,
+              icon: Icons.cloud_off,
+              title: '全局网络状态监测',
+              onTap: () => context.push('/mine/day57_connectivity_plus_demo'),
               showBorder: false,
               isDark: isDark),
         ], isDark),

@@ -58,6 +58,7 @@ import '../pages/day53_screenshot_demo.dart';
 import '../pages/day54_share_save_demo.dart';
 import '../pages/day55_app_info_demo.dart';
 import '../pages/day56_device_connectivity_demo.dart';
+import '../pages/day57_connectivity_plus_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -478,6 +479,13 @@ GoRouter goRouter(Ref ref) {
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
                         context, state, const Day56DeviceConnectivityDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day57_connectivity_plus_demo',
+                    name: 'mine_day57_connectivity_plus_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day57ConnectivityPlusDemo()),
                   ),
                 ],
               ),

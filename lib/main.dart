@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +22,10 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 
 Future<void> main() async {
   // 确保 FlutterBinding 已初始化
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  // 1. 保留原生启动屏，阻止白屏，覆盖整个底层初始化期间
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // 初始化 FlutterDownloader
   await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
@@ -44,6 +48,10 @@ Future<void> main() async {
 
   // 初始化本地通知服务
   await NotificationService().init();
+
+  // 2. 所有的核心耗时任务（网络请求配置、本地数据库）已结束
+  // 在渲染 Flutter 首帧前移除原生视图遮罩，平滑交接给 Flutter 内部 SplashPage
+  FlutterNativeSplash.remove();
 
   runApp(
     // 1. Riverpod 的状态容器，包裹在最外层

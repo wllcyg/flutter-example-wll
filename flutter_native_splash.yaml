@@ -1,0 +1,21 @@
+flutter_native_splash:
+  # ==========================================
+  # 1. flutter_native_splash 自动生成原生启动屏
+  # 通过 flutter pub run flutter_native_splash:create 自动替换系统白屏
+  # ==========================================
+
+  # 2. 配置文件：定义背景色和中心图片
+  color: "#121212" # 背景颜色 (深色模式)
+  image: "assets/images/splash/splash_logo.png" # 启动页 Logo
+
+  # Android 12+ 专用的启动屏配置
+  android_12:
+    image: "assets/images/splash/splash_logo.png"
+    icon_background_color: "#121212"
+
+  # 隐藏状态栏和导航栏全屏显示
+  fullscreen: true
+
+  # 可选：在特定平台关闭启动屏配置
+  # android: false
+  # ios: true
