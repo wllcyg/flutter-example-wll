@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// Dio HTTP 客户端封装
 /// 单例模式，统一配置拦截器、超时、BaseUrl
@@ -19,16 +20,19 @@ class HttpClient {
       headers: {'Content-Type': 'application/json'},
     ));
 
-    // 添加日志拦截器 (仅在 Debug 模式)
+    // 添加精美日志拦截器 (仅在 Debug 模式)
     if (kDebugMode) {
-      dio.interceptors.add(LogInterceptor(
-        request: true,
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: false,
-        responseBody: true,
-        error: true,
-      ));
+      dio.interceptors.add(
+        PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: false,
+          error: true,
+          compact: true,
+          maxWidth: 90,
+        ),
+      );
     }
 
     // 添加 Token 拦截器

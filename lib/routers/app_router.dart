@@ -59,6 +59,11 @@ import '../pages/day54_share_save_demo.dart';
 import '../pages/day55_app_info_demo.dart';
 import '../pages/day56_device_connectivity_demo.dart';
 import '../pages/day57_connectivity_plus_demo.dart';
+import '../pages/day58_splash_optimization_demo.dart';
+import '../pages/day59_keyboard_visibility_demo.dart';
+import '../pages/day60_logger_demo.dart';
+import '../pages/day61_dotenv_demo.dart';
+import '../pages/day62_pretty_dio_logger_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -486,6 +491,41 @@ GoRouter goRouter(Ref ref) {
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
                         context, state, const Day57ConnectivityPlusDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day58_splash_optimization_demo',
+                    name: 'mine_day58_splash_optimization_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day58SplashOptimizationDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day59_keyboard_visibility_demo',
+                    name: 'mine_day59_keyboard_visibility_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day59KeyboardVisibilityDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day60_logger_demo',
+                    name: 'mine_day60_logger_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day60LoggerDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day61_dotenv_demo',
+                    name: 'mine_day61_dotenv_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day61DotenvDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day62_pretty_dio_logger_demo',
+                    name: 'mine_day62_pretty_dio_logger_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day62PrettyDioLoggerDemo()),
                   ),
                 ],
               ),
