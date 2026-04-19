@@ -64,6 +64,12 @@ import '../pages/day59_keyboard_visibility_demo.dart';
 import '../pages/day60_logger_demo.dart';
 import '../pages/day61_dotenv_demo.dart';
 import '../pages/day62_pretty_dio_logger_demo.dart';
+import '../pages/day63_sentry_demo.dart';
+import '../pages/day66_lottie_basic_demo.dart';
+import '../pages/day67_lottie_advanced_demo.dart';
+import '../pages/day68_lottie_interactive_login.dart';
+import '../pages/day69_skeletonizer_demo.dart';
+import '../pages/day71_startup_performance_demo.dart';
 
 part 'app_router.g.dart';
 
@@ -526,6 +532,48 @@ GoRouter goRouter(Ref ref) {
                     parentNavigatorKey: null,
                     pageBuilder: (context, state) => _slideTransition(
                         context, state, const Day62PrettyDioLoggerDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day63_sentry_demo',
+                    name: 'mine_day63_sentry_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day63SentryDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day66_lottie_basic_demo',
+                    name: 'mine_day66_lottie_basic_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day66LottieBasicDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day67_lottie_advanced_demo',
+                    name: 'mine_day67_lottie_advanced_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day67LottieAdvancedDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day68_lottie_interactive_login',
+                    name: 'mine_day68_lottie_interactive_login',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day68LottieInteractiveLogin()),
+                  ),
+                  GoRoute(
+                    path: 'day69_skeletonizer_demo',
+                    name: 'mine_day69_skeletonizer_demo',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day69SkeletonizerDemo()),
+                  ),
+                  GoRoute(
+                    path: 'day71_performance_optimization',
+                    name: 'mine_day71_performance_optimization',
+                    parentNavigatorKey: null,
+                    pageBuilder: (context, state) => _slideTransition(
+                        context, state, const Day71StartupPerformanceDemo()),
                   ),
                 ],
               ),
